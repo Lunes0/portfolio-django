@@ -1,0 +1,14 @@
+<h1>{{ post.title }}</h1>
+
+{% if post.image %}
+<img
+  src="{{ post.image.url }}"
+  alt="{{ post.title }}"
+  style="max-width: 600px"
+/>
+{% endif %}
+
+<div class="content">{{ post.content|linebreaks }}</div>
+
+<p>Publicado em: {{ post.created_on|date:"d/m/Y" }}</p>
+<a href="{% url 'core:index' %}">← Voltar para a lista</a>

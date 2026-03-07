@@ -1,0 +1,22 @@
+<h1>Meu Portfólio</h1>
+
+<div class="projects-grid">
+  {% for post in posts %}
+  <div class="card">
+    {% if post.image %}
+    <img
+      src="{{ post.image.url }}"
+      alt="{{ post.title }}"
+      style="width: 200px"
+    />
+    {% endif %}
+
+    <h2>{{ post.title }}</h2>
+    <p>{{ post.content|truncatewords:20 }}</p>
+
+    <a href="{% url 'core:detail' post.slug %}">Ver Projeto</a>
+  </div>
+  {% empty %}
+  <p>Ainda não há projetos publicados.</p>
+  {% endfor %}
+</div>
