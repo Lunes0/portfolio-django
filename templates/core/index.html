@@ -1,22 +1,45 @@
-<h1>Meu Portfólio</h1>
+{% extends "core/base.html" %} {% block content %}
+<div class="text-center mb-5">
+  <h1 class="display-4 fw-bold">Meus Projetos</h1>
+  <p class="lead">Confira o que ando desenvolvendo.</p>
+</div>
 
-<div class="projects-grid">
+<div class="row row-cols-1 row-cols-md-3 g-4">
   {% for post in posts %}
-  <div class="card">
-    {% if post.image %}
-    <img
-      src="{{ post.image.url }}"
-      alt="{{ post.title }}"
-      style="width: 200px"
-    />
-    {% endif %}
+  <div class="col">
+    <div class="card h-100 shadow-sm project-card">
+      {% if post.image %}
+      <img
+        src="{{ post.image.url }}"
+        class="card-img-top"
+        alt="{{ post.title }}"
+      />
+      {% else %}
+      <div
+        class="bg-secondary text-white d-flex align-items-center justify-content-center"
+        style="height: 200px"
+      >
+        Sem imagem
+      </div>
+      {% endif %}
 
-    <h2>{{ post.title }}</h2>
-    <p>{{ post.content|truncatewords:20 }}</p>
-
-    <a href="{% url 'core:detail' post.slug %}">Ver Projeto</a>
+      <div class="card-body">
+        <h5 class="card-title fw-bold">{{ post.title }}</h5>
+        <p class="card-text text-muted">{{ post.content|truncatewords:15 }}</p>
+      </div>
+      <div class="card-footer bg-white border-top-0">
+        <a
+          href="{% url 'core:detail' post.slug %}"
+          class="btn btn-outline-primary w-100"
+          >Ver Detalhes</a
+        >
+      </div>
+    </div>
   </div>
   {% empty %}
-  <p>Ainda não há projetos publicados.</p>
+  <div class="col-12 text-center">
+    <p>Nenhum projeto encontrado.</p>
+  </div>
   {% endfor %}
 </div>
+{% endblock %}
