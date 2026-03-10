@@ -1,14 +1,37 @@
-<h1>{{ post.title }}</h1>
+{% extends "core/base.html" %} {% block content %}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="{% url 'core:index' %}">Projetos</a>
+    </li>
+    <li class="breadcrumb-item active">{{ post.title }}</li>
+  </ol>
+</nav>
 
-{% if post.image %}
-<img
-  src="{{ post.image.url }}"
-  alt="{{ post.title }}"
-  style="max-width: 600px"
-/>
-{% endif %}
+<div class="row">
+  <div class="col-md-8">
+    {% if post.image %}
+    <img
+      src="{{ post.image.url }}"
+      class="img-fluid rounded shadow mb-4"
+      alt="{{ post.title }}"
+    />
+    {% endif %}
+    <h1 class="mb-3">{{ post.title }}</h1>
+    <hr />
+    <div class="project-content lead">{{ post.content|linebreaks }}</div>
+  </div>
 
-<div class="content">{{ post.content|linebreaks }}</div>
-
-<p>Publicado em: {{ post.created_on|date:"d/m/Y" }}</p>
-<a href="{% url 'core:index' %}">← Voltar para a lista</a>
+  <div class="col-md-4">
+    <div class="card bg-light p-3">
+      <h5>Informações</h5>
+      <p>
+        <strong>Status:</strong> <span class="badge bg-success">Concluído</span>
+      </p>
+      <p><strong>Publicado em:</strong> {{ post.created_on|date:"d M Y" }}</p>
+      <hr />
+      <a href="#" class="btn btn-dark mb-2">Ver no GitHub</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
