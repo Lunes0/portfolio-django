@@ -1,0 +1,26 @@
+[project]
+name = "portfolio-django"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Lunes0",email = "lunes6660@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "django (>=6.0.3,<7.0.0)",
+    "pillow (>=12.1.1,<13.0.0)",
+    "djangorestframework (>=3.16.1,<4.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[dependency-groups]
+dev = [
+    "pytest (>=9.0.2,<10.0.0)",
+    "pytest-django (>=4.12.0,<5.0.0)",
+    "factory-boy (>=3.3.3,<4.0.0)"
+]
